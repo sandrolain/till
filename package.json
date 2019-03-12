@@ -2,7 +2,7 @@
   "name": "till",
   "version": "1.0.0",
   "description": "Promise Utility Library",
-  "main": "index.js",
+  "main": "till.js",
   "directories": {
     "test": "test"
   },

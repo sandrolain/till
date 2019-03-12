@@ -9,8 +9,10 @@ import {
 	toAll,
 	chain,
 	toChain,
-	every
-} from "./index.js";
+	every,
+	sleep,
+	retry
+} from "./till.js";
 import test from "ava";
 
 
@@ -150,3 +152,26 @@ test("every", async (t) =>
 	]);
 });
 
+test("sleep", async (t) =>
+{
+	const val = await sleep(2000, "weakeup!")
+
+	t.is(val, "weakeup!");
+});
+
+test("retry", async (t) =>
+{
+	const val = await retry(3, (resolve, reject, i, n) =>
+	{
+		if(i == n)
+		{
+			resolve("In extremis")
+		}
+		else
+		{
+			reject(new Error("bad retry"));
+		}
+	});
+
+	t.is(val, "In extremis");
+});

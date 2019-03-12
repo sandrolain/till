@@ -70,3 +70,48 @@ export const every = function()
 
 	return all(list);
 }
+
+
+export const sleep = (ms, data = null) =>
+{
+	return new Promise((resolve) =>
+	{
+		setTimeout(() =>
+		{
+			resolve(data);
+		}, ms);
+	});
+};
+
+export const retry = async (retries, fn) =>
+{
+	var res,
+		ok = false,
+		errors = [],
+		index = 0;
+
+	do
+	{
+		try
+		{
+			res = await new Promise(function(resolve, reject)
+			{
+				return fn.call(this, resolve, reject, index, retries);
+			});
+
+			ok	= true;
+		}
+		catch(e)
+		{
+			errors.push(e);
+		}
+	}
+	while(!ok && index++ < retries);
+
+	if(!ok)
+	{
+		throw errors[errors.length - 1];
+	}
+
+	return res;
+};
