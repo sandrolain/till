@@ -3,7 +3,7 @@
 @type:		document
 @title:		till.js Documentation
 
-## Promise Utility Library
+## ES6 Promise Utility Library
 
 Small library with a collection of utilities designed to facilitate the use of the ES6 Promise, especially with the await operator.
 
