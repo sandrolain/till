@@ -1,0 +1,5 @@
+{
+	"splitCodeBlocks": true,
+	"outputDirPath": "./docs",
+	"inputFilesPatterns": ["./till.js"]
+}

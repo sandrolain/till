@@ -3,12 +3,9 @@ import {
 	ok,
 	ko,
 	all,
+	race,
 	to,
-	toPromise,
-	allPromises,
-	toAll,
 	chain,
-	toChain,
 	every,
 	sleep,
 	retry
@@ -40,6 +37,8 @@ test("ko", async (t) =>
 	try
 	{
 		const res = await ko("ERR");
+
+		res;
 	}
 	catch(e)
 	{
@@ -59,6 +58,28 @@ test("all", async (t) =>
 	t.deepEqual(res, ["test05-A", "test05-B", "test05-C"]);
 });
 
+test("race", async (t) =>
+{
+	const res = await race([
+		(resolve) => { setTimeout(() => { resolve("One"); }, 600); },
+		(resolve) => { setTimeout(() => { resolve("Two"); }, 400); },
+		(resolve) => { setTimeout(() => { resolve("Three"); }, 200); },
+	]);
+
+	t.is(res, "Three");
+});
+
+test("to race", async (t) =>
+{
+	const res = await to(race([
+		(resolve) => { setTimeout(() => { resolve("One"); }, 600); },
+		(resolve) => { setTimeout(() => { resolve("Two"); }, 400); },
+		(resolve) => { setTimeout(() => { resolve("Three"); }, 200); },
+	]));
+
+	t.deepEqual(res, {success: true, payload: "Three"});
+});
+
 test("to", async (t) =>
 {
 	const res = await to(Promise.resolve("test02"));
@@ -66,39 +87,14 @@ test("to", async (t) =>
 	t.deepEqual(res, {success: true, payload: "test02"});
 });
 
-test("toPromise", async (t) =>
+
+test("to all", async (t) =>
 {
-	const res = await toPromise((resolve) =>
-	{
-		resolve("test03");
-	});
-
-	t.deepEqual(res, {success: true, payload: "test03"});
-});
-
-test("allPromises", async (t) =>
-{
-	const res = await allPromises((resolve) =>
-	{
-		resolve("test04-A");
-	}, (resolve) =>
-	{
-		resolve("test04-B");
-	}, (resolve) =>
-	{
-		resolve("test04-C");
-	});
-
-	t.deepEqual(res, ["test04-A", "test04-B", "test04-C"]);
-});
-
-test("toAll", async (t) =>
-{
-	const res = await toAll([
+	const res = await to(all([
 		Promise.resolve("test06-A"),
 		Promise.resolve("test06-B"),
 		Promise.resolve("test06-C")
-	]);
+	]));
 
 	t.deepEqual(res, {success: true, payload: ["test06-A", "test06-B", "test06-C"]});
 });
@@ -119,9 +115,9 @@ test("chain", async (t) =>
 });
 
 
-test("toChain", async (t) =>
+test("to chain", async (t) =>
 {
-	const res = await toChain(
+	const res = await to(chain(
 		(resolve) =>
 		{
 			resolve(2);
@@ -129,7 +125,7 @@ test("toChain", async (t) =>
 		(value) => value + 1,
 		(value) => value * 5,
 		(value) => value + 2
-	);
+	));
 
 	t.deepEqual(res, {success: true, payload: 17});
 });
@@ -154,9 +150,9 @@ test("every", async (t) =>
 
 test("sleep", async (t) =>
 {
-	const val = await sleep(2000, "weakeup!")
+	const val = await sleep(2000, "wake up!");
 
-	t.is(val, "weakeup!");
+	t.is(val, "wake up!");
 });
 
 test("retry", async (t) =>
@@ -165,13 +161,13 @@ test("retry", async (t) =>
 	{
 		if(i == n)
 		{
-			resolve("In extremis")
+			resolve("At the last attempt");
 		}
 		else
 		{
-			reject(new Error("bad retry"));
+			reject(new Error("Failed attempt"));
 		}
 	});
 
-	t.is(val, "In extremis");
+	t.is(val, "At the last attempt");
 });
