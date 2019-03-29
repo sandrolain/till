@@ -144,8 +144,8 @@ The list of executors or Promises to be solved can be passed as individual argum
 
 const result = await race(
 	(resolve) =&gt; { setTimeout(() =&gt; { resolve(&quot;One&quot;); }, 600); },
-	(resolve) =&gt; { setTimeout(() =&gt; { resolve(&quot;Two&quot;); }, 400); },
-	(resolve) =&gt; { setTimeout(() =&gt; { resolve(&quot;Three&quot;); }, 200); },
+	(resolve) =&gt; { setTimeout(() =&gt; { resolve(&quot;Two&quot;); }, 200); },
+	(resolve) =&gt; { setTimeout(() =&gt; { resolve(&quot;Three&quot;); }, 400); },
 );
 
 console.log(result);

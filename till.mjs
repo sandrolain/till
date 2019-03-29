@@ -159,8 +159,8 @@ import {race, ok} "./till.mjs";
 
 const result = await race(
 	(resolve) => { setTimeout(() => { resolve("One"); }, 600); },
-	(resolve) => { setTimeout(() => { resolve("Two"); }, 400); },
-	(resolve) => { setTimeout(() => { resolve("Three"); }, 200); },
+	(resolve) => { setTimeout(() => { resolve("Two"); }, 200); },
+	(resolve) => { setTimeout(() => { resolve("Three"); }, 400); },
 );
 
 console.log(result);
@@ -360,7 +360,7 @@ This function allows you to execute the call to Promise several times in the cas
 
 import {retry} "./till.mjs";
 
-const val = await retry(3, (resolve, reject, i, n) =>
+const result = await retry(3, (resolve, reject, i, n) =>
 {
 	if(i == n)
 	{
