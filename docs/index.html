@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>till.js Documentation</title>
+		<title>till.mjs Documentation</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="./style.css" type="text/css" media="all" />
 		<link rel="stylesheet" href="./prism.css" type="text/css" media="all" />
@@ -11,14 +11,15 @@
 	<body>
 		<div class="ird-page w-80 w-95@m w-100@s mh-auto">
 			<div class="ird-page__head">
-				<h1 class="ird-page__title">till.js Documentation</h1>
+				<h1 class="ird-page__title">till.mjs Documentation</h1>
 			</div>
 			<div class="flex flex-col@s">
 				
 				<div class="ird-page__body cnt-folio flex-flexible"><div class="ird-index">
 			<div class="ird-index__body"><div class="ird-text"><h2>ES6 Promise Utility Library</h2>
 <p>Small library with a collection of utilities designed to facilitate the use of the ES6 Promise, especially with the await operator.</p>
-</div></div>
+<p><a class="github-button" href="https://github.com/sandrolain/till" data-size="large" aria-label="Star sandrolain/till on GitHub">View on GitHub</a></p>
+<script async defer src="https://buttons.github.io/buttons.js"></script></div></div>
 			
 			<div class="ird-category">
 			<h2></h2>
@@ -26,11 +27,11 @@
 			
 			<div class="ird-category__items"><div class="ird-comment">
 			<div class="ird-comment__head">
-				<h3 class="ird-comment__title"><code>promise(arg)</code>
+				<h3 class="ird-comment__title"><code>promise(executor)</code>
 </h3>
 			</div>
 			<div class="ird-comment__params">
-					<dt><code class="fg-accent">arg</code> <em>Function/Promise/mixed</em></dt>
+					<dt><code class="fg-accent">executor</code> <em>Function/Promise/mixed</em></dt>
 					<dd><p>The Promise, or the executor function, or the value of resolved promise</p>
 </dd>
 				
@@ -39,7 +40,7 @@
 </dd>
 			</div>
 			<div class="ird-comment__body"><div class="ird-text"><p>Shorcut for Promise initialization.</p>
-</div><div class="ird-code"><pre><code data-lang="javascript" class="language-javascript">import {promise} from &quot;./till.js&quot;;
+</div><div class="ird-code"><pre><code data-lang="javascript" class="language-javascript">import {promise} from &quot;./till.mjs&quot;;
 
 const result = await promise((ok, ko) =&gt;
 {
@@ -63,7 +64,7 @@ console.log(result);
 </dd>
 			</div>
 			<div class="ird-comment__body"><div class="ird-text"><p>Shortcut for <strong>Promise.resolve</strong>.</p>
-</div><div class="ird-code"><pre><code data-lang="javascript" class="language-javascript">import {ok} from &quot;./till.js&quot;;
+</div><div class="ird-code"><pre><code data-lang="javascript" class="language-javascript">import {ok} from &quot;./till.mjs&quot;;
 
 const result = await ok(&quot;Resolved!&quot;);
 
@@ -84,7 +85,7 @@ console.log(result);
 </dd>
 			</div>
 			<div class="ird-comment__body"><div class="ird-text"><p>Shortcut for <strong>Promise.reject</strong>.</p>
-</div><div class="ird-code"><pre><code data-lang="javascript" class="language-javascript">import {ko} &quot;./till.js&quot;;
+</div><div class="ird-code"><pre><code data-lang="javascript" class="language-javascript">import {ko} &quot;./till.mjs&quot;;
 
 const result = await ko(&quot;Something went wrong&quot;);
 
@@ -109,7 +110,7 @@ The list of executors or Promises to be solved can be passed as individual argum
 </dd>
 			</div>
 			<div class="ird-comment__body"><div class="ird-text"><p>Shortcut for <strong>Promise.all</strong>, with the ability to pass the promises as single arguments.</p>
-</div><div class="ird-code"><pre><code data-lang="javascript" class="language-javascript">import {all, ok} &quot;./till.js&quot;;
+</div><div class="ird-code"><pre><code data-lang="javascript" class="language-javascript">import {all, ok} &quot;./till.mjs&quot;;
 
 const result = await all(
 	ok(&quot;Result #1&quot;),
@@ -139,7 +140,7 @@ The list of executors or Promises to be solved can be passed as individual argum
 </dd>
 			</div>
 			<div class="ird-comment__body"><div class="ird-text"><p>Shortcut for <strong>Promise.race</strong>, with the ability to pass the promises as single arguments.</p>
-</div><div class="ird-code"><pre><code data-lang="javascript" class="language-javascript">import {race, ok} &quot;./till.js&quot;;
+</div><div class="ird-code"><pre><code data-lang="javascript" class="language-javascript">import {race, ok} &quot;./till.mjs&quot;;
 
 const result = await race(
 	(resolve) =&gt; { setTimeout(() =&gt; { resolve(&quot;One&quot;); }, 600); },
@@ -163,10 +164,9 @@ console.log(result);
 			<dd><p>Promise with managed result object</p>
 </dd>
 			</div>
-			<div class="ird-comment__body"><div class="ird-text"><p>Function that allows the safe use of await without the need for a try / catch.<br />
-In case of rejection the error is captured and returned.<br />
+			<div class="ird-comment__body"><div class="ird-text"><p>Function that allows the safe use of await without the need for a try / catch. In case of rejection the error is captured and returned.<br />
 The structure of the result of the function is an object with two properties: &quot;success&quot; true / false and depending on the case &quot;payload&quot; or &quot;error&quot; evaluated.</p>
-</div><div class="ird-code"><pre><code data-lang="javascript" class="language-javascript">import {to, ok, ko} &quot;./till.js&quot;;
+</div><div class="ird-code"><pre><code data-lang="javascript" class="language-javascript">import {to, ok, ko} &quot;./till.mjs&quot;;
 
 
 const result1 = await to(
@@ -185,7 +185,7 @@ console.log(result2);
 // {&quot;success&quot;: false, &quot;error&quot;: Error(&quot;Something went wrong&quot;)}</code></pre></div></div>
 		</div><div class="ird-comment">
 			<div class="ird-comment__head">
-				<h3 class="ird-comment__title">chain(fn, [fn, ...])
+				<h3 class="ird-comment__title"><code>chain(fn, [fn, ...])</code>
 </h3>
 			</div>
 			<div class="ird-comment__params">
@@ -201,7 +201,8 @@ console.log(result2);
 			<dd><p>Result Promise of the chain calls</p>
 </dd>
 			</div>
-			<div class="ird-comment__body"><div class="ird-code"><pre><code data-lang="javascript" class="language-javascript">import {chain} &quot;./till.js&quot;;
+			<div class="ird-comment__body"><div class="ird-text"><p>Function that allows you to execute a promise followed by a sequence of transformations of the returned value through a chain of calls to the then() method.</p>
+</div><div class="ird-code"><pre><code data-lang="javascript" class="language-javascript">import {chain} &quot;./till.mjs&quot;;
 
 const result = await chain(
 	(ok, ko) =&gt;
@@ -222,7 +223,7 @@ console.log(result);
 // 7</code></pre></div></div>
 		</div><div class="ird-comment">
 			<div class="ird-comment__head">
-				<h3 class="ird-comment__title">every(fn, [fn, ...])
+				<h3 class="ird-comment__title"><code>every(fn, [fn, ...])</code>
 </h3>
 			</div>
 			<div class="ird-comment__params">
@@ -241,7 +242,7 @@ The list of executors or Promises to be solved can be passed as individual argum
 			</div>
 			<div class="ird-comment__body"><div class="ird-text"><p>Similar to the &quot;all&quot; function but with the &quot;to&quot; function applied to each element.<br />
 This allows to obtain the result of each Promise, both in case of resolution and rejection.</p>
-</div><div class="ird-code"><pre><code data-lang="javascript" class="language-javascript">import {every, ok, ko} &quot;./till.js&quot;;
+</div><div class="ird-code"><pre><code data-lang="javascript" class="language-javascript">import {every, ok, ko} &quot;./till.mjs&quot;;
 
 const result = await every(
 	ok(&quot;Result #1&quot;),
@@ -255,7 +256,7 @@ console.log(result);
 //	{&quot;success&quot;: true, &quot;payload&quot;: &quot;Result #3&quot;}]</code></pre></div></div>
 		</div><div class="ird-comment">
 			<div class="ird-comment__head">
-				<h3 class="ird-comment__title">sleep(ms [, data])
+				<h3 class="ird-comment__title"><code>sleep(ms [, data])</code>
 </h3>
 			</div>
 			<div class="ird-comment__params">
@@ -273,7 +274,7 @@ console.log(result);
 			</div>
 			<div class="ird-comment__body"><div class="ird-text"><p>This function in conjunction with the use of await allows pausing the execution of the current context.<br />
 Without the use of await it allows you to perform a Promise with delay.</p>
-</div><div class="ird-code"><pre><code data-lang="javascript" class="language-javascript">import {sleep} &quot;./till.js&quot;;
+</div><div class="ird-code"><pre><code data-lang="javascript" class="language-javascript">import {sleep} &quot;./till.mjs&quot;;
 
 const result = await sleep(3000, &quot;wake up!&quot;);
 
@@ -281,7 +282,7 @@ console.log(result);
 // &quot;wake up!&quot;</code></pre></div></div>
 		</div><div class="ird-comment">
 			<div class="ird-comment__head">
-				<h3 class="ird-comment__title">retry(retries, executor)
+				<h3 class="ird-comment__title"><code>retry(retries, executor)</code>
 </h3>
 			</div>
 			<div class="ird-comment__params">
@@ -298,7 +299,7 @@ console.log(result);
 </dd>
 			</div>
 			<div class="ird-comment__body"><div class="ird-text"><p>This function allows you to execute the call to Promise several times in the case of re-rejection, until there is a resolution or the attempts are exhausted.</p>
-</div><div class="ird-code"><pre><code data-lang="javascript" class="language-javascript">import {retry} &quot;./till.js&quot;;
+</div><div class="ird-code"><pre><code data-lang="javascript" class="language-javascript">import {retry} &quot;./till.mjs&quot;;
 
 const val = await retry(3, (resolve, reject, i, n) =&gt;
 {

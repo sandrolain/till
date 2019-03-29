@@ -9,7 +9,7 @@ import {
 	every,
 	sleep,
 	retry
-} from "./till.js";
+} from "./till.mjs";
 import test from "ava";
 
 

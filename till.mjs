@@ -1,11 +1,16 @@
 /*--
 
 @type:		document
-@title:		till.js Documentation
+@title:		till.mjs Documentation
 
 ## ES6 Promise Utility Library
 
 Small library with a collection of utilities designed to facilitate the use of the ES6 Promise, especially with the await operator.
+
+<a class="github-button" href="https://github.com/sandrolain/till" data-size="large" aria-label="Star sandrolain/till on GitHub">View on GitHub</a>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
 
 --*/
 
@@ -25,15 +30,15 @@ const promisesFromArgs = (args) =>
 
 /*--
 
-@title:		`promise(arg)`
-@param: 	arg Function/Promise/mixed The Promise, or the executor function, or the value of resolved promise
+@title:		`promise(executor)`
+@param: 	executor Function/Promise/mixed The Promise, or the executor function, or the value of resolved promise
 @return:	Promise Original Promise, or initialized Promise, or resolved Promise
 
 Shorcut for Promise initialization.
 
 ```javascript
 
-import {promise} from "./till.js";
+import {promise} from "./till.mjs";
 
 const result = await promise((ok, ko) =>
 {
@@ -72,7 +77,7 @@ Shortcut for **Promise.resolve**.
 
 ```javascript
 
-import {ok} from "./till.js";
+import {ok} from "./till.mjs";
 
 const result = await ok("Resolved!");
 
@@ -95,7 +100,7 @@ Shortcut for **Promise.reject**.
 
 ```javascript
 
-import {ko} "./till.js";
+import {ko} "./till.mjs";
 
 const result = await ko("Something went wrong");
 
@@ -118,7 +123,7 @@ Shortcut for **Promise.all**, with the ability to pass the promises as single ar
 
 ```javascript
 
-import {all, ok} "./till.js";
+import {all, ok} "./till.mjs";
 
 const result = await all(
 	ok("Result #1"),
@@ -150,7 +155,7 @@ Shortcut for **Promise.race**, with the ability to pass the promises as single a
 
 ```javascript
 
-import {race, ok} "./till.js";
+import {race, ok} "./till.mjs";
 
 const result = await race(
 	(resolve) => { setTimeout(() => { resolve("One"); }, 600); },
@@ -176,13 +181,12 @@ export const race = function()
 @param:		promise Promise The Promise to manage
 @return:	Promise Promise with managed result object
 
-Function that allows the safe use of await without the need for a try / catch.
-In case of rejection the error is captured and returned.
+Function that allows the safe use of await without the need for a try / catch. In case of rejection the error is captured and returned.
 The structure of the result of the function is an object with two properties: "success" true / false and depending on the case "payload" or "error" evaluated.
 
 ```javascript
 
-import {to, ok, ko} "./till.js";
+import {to, ok, ko} "./till.mjs";
 
 
 const result1 = await to(
@@ -225,14 +229,16 @@ export const to = (fn) =>
 
 /*--
 
-@title:		chain(fn, [fn, ...])
+@title:		`chain(fn, [fn, ...])`
 @param:		fn Function/Promise/mixed The Promise, or the executor function for the Promise, or value for the resolved promise
 @param:		[fn,...] Function Sequence of functions to pass as chain of then() method calls
 @return:	Promise Result Promise of the chain calls
 
+Function that allows you to execute a promise followed by a sequence of transformations of the returned value through a chain of calls to the then() method.
+
 ```javascript
 
-import {chain} "./till.js";
+import {chain} "./till.mjs";
 
 const result = await chain(
 	(ok, ko) =>
@@ -272,7 +278,7 @@ export const chain = function()
 
 /*--
 
-@title:		every(fn, [fn, ...])
+@title:		`every(fn, [fn, ...])`
 @param:		fn Function/Promise/Array The first executor function or Promise to resolve.\nThe list of executors or Promises to be solved can be passed as individual arguments or as an Array in the first argument.
 @param:		[fn,...] Function/Promise Additional executor functions or Promises
 @return:	Promise Result of all Promises
@@ -282,7 +288,7 @@ This allows to obtain the result of each Promise, both in case of resolution and
 
 ```javascript
 
-import {every, ok, ko} "./till.js";
+import {every, ok, ko} "./till.mjs";
 
 const result = await every(
 	ok("Result #1"),
@@ -307,7 +313,7 @@ export const every = function()
 
 /*--
 
-@title:		sleep(ms [, data])
+@title:		`sleep(ms [, data])`
 @param:		ms Number The time to wait before Promise resolution, in milliseconds
 @param:		data mixed Optional. Promise, or executor function, or data value to pass to sleep() resolution after waiting time expires
 @return:	Promise Result passed data
@@ -317,7 +323,7 @@ Without the use of await it allows you to perform a Promise with delay.
 
 ```javascript
 
-import {sleep} "./till.js";
+import {sleep} "./till.mjs";
 
 const result = await sleep(3000, "wake up!");
 
@@ -343,7 +349,7 @@ export const sleep = (ms, data = null) =>
 
 /*--
 
-@title:		retry(retries, executor)
+@title:		`retry(retries, executor)`
 @param:		retries Number The maximum number of attempts to retry to execute the Promise
 @param:		executor Function The executor function with the addition of two arguments, the attempt index and the total number of attempts
 @return:	Promise Result Promise
@@ -352,7 +358,7 @@ This function allows you to execute the call to Promise several times in the cas
 
 ```javascript
 
-import {retry} "./till.js";
+import {retry} "./till.mjs";
 
 const val = await retry(3, (resolve, reject, i, n) =>
 {

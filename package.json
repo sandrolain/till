@@ -2,7 +2,7 @@
   "name": "till",
   "version": "1.0.0",
   "description": "Promise Utility Library",
-  "main": "till.js",
+  "main": "till.mjs",
   "directories": {
     "test": "test"
   },
@@ -11,7 +11,12 @@
   },
   "keywords": [
     "promise",
-    "es6"
+    "es6",
+	"javascript",
+	"ecmpascript",
+	"async",
+	"await",
+	"utility"
   ],
   "author": "Sandro Lain",
   "license": "ISC",
