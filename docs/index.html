@@ -301,7 +301,7 @@ console.log(result);
 			<div class="ird-comment__body"><div class="ird-text"><p>This function allows you to execute the call to Promise several times in the case of re-rejection, until there is a resolution or the attempts are exhausted.</p>
 </div><div class="ird-code"><pre><code data-lang="javascript" class="language-javascript">import {retry} &quot;./till.mjs&quot;;
 
-const val = await retry(3, (resolve, reject, i, n) =&gt;
+const result = await retry(3, (resolve, reject, i, n) =&gt;
 {
 	if(i == n)
 	{
