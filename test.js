@@ -1,3 +1,5 @@
+import test from "ava";
+
 import {
 	promise,
 	ok,
@@ -10,7 +12,8 @@ import {
 	sleep,
 	retry
 } from "./till.mjs";
-import test from "ava";
+
+
 
 
 

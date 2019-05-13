@@ -1,26 +1,24 @@
 {
-  "name": "till",
+  "name": "till-mjs",
   "version": "1.0.0",
   "description": "Promise Utility Library",
   "main": "till.mjs",
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
     "test": "npx ava --verbose"
   },
   "keywords": [
     "promise",
     "es6",
-	"javascript",
-	"ecmpascript",
-	"async",
-	"await",
-	"utility"
+    "javascript",
+    "ecmpascript",
+    "async",
+    "await",
+    "utility"
   ],
   "author": "Sandro Lain",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
     "@babel/plugin-transform-runtime": "^7.3.4",
     "@babel/polyfill": "^7.2.5",
     "@babel/preset-env": "^7.3.4",

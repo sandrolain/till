@@ -1,7 +1,7 @@
 /*--
 
 @type:		document
-@title:		till.mjs Documentation
+@title:		till documentation
 
 ## ES6 Promise Utility Library
 

@@ -1,4 +1,4 @@
-# till.js
+# till
 
 ## Promise Utility Library
 
@@ -13,11 +13,10 @@ Small library with a collection of utilities designed to facilitate the use of t
 - [Babel](https://babeljs.io/) for test transpilation in node.js 8
 
 
-
 ## TODO
 
-[x] Documentation  
-[ ] npm package
+- [x] Documentation  
+- [x] npm package
 
 -------------------------
 
