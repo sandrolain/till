@@ -1,8 +1,9 @@
 {
   "name": "till-mjs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Promise Utility Library",
   "main": "till.mjs",
+  "type": "module",
   "scripts": {
     "test": "npx ava --verbose"
   },
@@ -13,7 +14,9 @@
     "ecmpascript",
     "async",
     "await",
-    "utility"
+	"utility",
+	"module",
+	"mjs"
   ],
   "author": "Sandro Lain",
   "license": "ISC",
