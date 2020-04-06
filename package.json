@@ -14,20 +14,20 @@
     "ecmpascript",
     "async",
     "await",
-	"utility",
-	"module",
-	"mjs"
+    "utility",
+    "module",
+    "mjs"
   ],
   "author": "Sandro Lain",
   "license": "ISC",
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/plugin-transform-runtime": "^7.3.4",
-    "@babel/polyfill": "^7.2.5",
-    "@babel/preset-env": "^7.3.4",
-    "@babel/register": "^7.0.0",
-    "@babel/runtime": "^7.3.4",
-    "ava": "^1.3.1"
+    "@babel/cli": "^7.8.4",
+    "@babel/plugin-transform-runtime": "^7.9.0",
+    "@babel/polyfill": "^7.8.7",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/register": "^7.9.0",
+    "@babel/runtime": "^7.9.2",
+    "ava": "^1.4.1"
   },
   "ava": {
     "require": [
